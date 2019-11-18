@@ -40,6 +40,8 @@ void AAsteRushProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor
 	{
 		OtherComp->AddImpulseAtLocation(GetVelocity() * 20.0f, GetActorLocation());
 	}
+	
+	if (!OtherActor->ActorHasTag("player"))
+		Destroy();
 
-	Destroy();
 }
