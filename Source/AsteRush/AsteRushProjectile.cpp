@@ -1,6 +1,7 @@
 // Copyright 1998-2019 Epic Games, Inc. All Rights Reserve
 
 #include "AsteRushProjectile.h"
+#include "Engine/Engine.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "UObject/ConstructorHelpers.h"
 #include "Components/StaticMeshComponent.h"
@@ -41,7 +42,9 @@ void AAsteRushProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor
 		OtherComp->AddImpulseAtLocation(GetVelocity() * 20.0f, GetActorLocation());
 	}
 	
-	if (!OtherActor->ActorHasTag("player"))
+	if (!OtherActor->ActorHasTag("player") || !OtherActor->ActorHasTag("asteroid"))
+	{
 		Destroy();
+	}
 
 }
